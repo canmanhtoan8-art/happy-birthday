@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Birthday Kiều Chinh</title>
 
-
 <style>
+   
 *{
     margin:0;
     padding:0;
@@ -90,6 +90,17 @@ body::before{
     animation:bounce 1.5s infinite;
 }
 
+.genie{
+    font-size:5.2rem;
+    animation:bounce 1.5s infinite;
+}
+
+.candle{
+    font-size:4.5rem;
+    margin:10px 0;
+    animation:bounce 1.5s infinite;
+}
+
 h1{
     margin-top:12px;
     font-size:clamp(2.2rem,6vw,4.5rem);
@@ -146,6 +157,17 @@ button:hover{
         0 0 35px rgba(255,255,255,.4);
     animation:showImg .9s ease;
 }
+.genie-img{
+    width:300px;
+    height:390px;
+    object-fit:cover;
+    border-radius:28px;
+    border:6px solid rgba(255,255,255,.85);
+    box-shadow:
+        0 18px 45px rgba(0,80,70,.25),
+        0 0 35px rgba(255,255,255,.4);
+    animation:showImg .9s ease;
+}
 
 .wish-text{
     margin:22px auto;
@@ -160,8 +182,20 @@ button:hover{
     max-width:540px;
     animation:fadeText 1.2s ease;
 }
+#wishScreen p{
+    margin:22px auto;
+    color:white;
+    font-size:1.45rem;
+    font-weight:900;
+    text-shadow:0 3px 14px rgba(0,0,0,.25);
+    background:linear-gradient(135deg,rgba(0,143,115,.85),rgba(0,168,132,.55));
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:22px;
+    padding:15px 18px;
+    max-width:540px;
+    animation:fadeText 1.2s ease;
+}
 
-/* BÓNG BAY ĐẸP HƠN */
 .balloon{
     position:absolute;
     bottom:-130px;
@@ -177,7 +211,6 @@ button:hover{
         0 12px 28px rgba(0,80,70,.18);
 }
 
-/* ánh sáng trên bóng */
 .balloon::before{
     content:'';
     position:absolute;
@@ -190,7 +223,6 @@ button:hover{
     transform:rotate(25deg);
 }
 
-/* dây bóng bay */
 .balloon::after{
     content:'';
     position:absolute;
@@ -323,6 +355,8 @@ button:hover{
 
 <body>
 
+<audio id="birthdaySound" src="happybirthday2.mp3" loop></audio>
+
 <div class="balloon b1"></div>
 <div class="balloon b2"></div>
 <div class="balloon b3"></div>
@@ -332,7 +366,7 @@ button:hover{
 
     <div id="homeScreen">
 
-        <div class="badge">🎉 Happy Birthday  🎉</div>
+        <div class="badge">🎉 Happy Birthday 🎉</div>
 
         <div class="cake">🎂</div>
 
@@ -347,7 +381,21 @@ button:hover{
             trong người có sức khỏe, chung quy là có tất cả nhưng vẫn ưu tiên sức khỏe trước 🥳
         </p>
 
-        <button onclick="showLove()">Thổi nến🎁</button>
+        <button onclick="showWish()">Click here ✌️</button>
+
+    </div>
+
+    <div id="wishScreen" style="display:none">
+
+        <img src="thanden.png" alt="Thần Đèn" class="genie-img">
+        <p>
+            Bụt đây nói ta nghe <br>
+            con muốn điều gì ✨
+        </p>
+
+        <div class="candle">🎂🕯️</div>
+
+        <button onclick="blowCandle()">🕯️ Thổi nến</button>
 
     </div>
 
@@ -356,7 +404,7 @@ button:hover{
         <img src="kieuchinh.jpg" alt="Kiều Chinh" class="birthday-img">
 
         <p class="wish-text">
-             Chúc mọi điều ước của bà sẽ thành sự thật 🎊🎊🎉🎉
+             Chúc cho mọi điều ước của bạn nhỏ thành sự thật 🎊🎊🎉🎉
         </p>
 
         <button onclick="goBack()">⬅ Quay lại</button>
@@ -367,10 +415,50 @@ button:hover{
 
 <script>
 let confettiInterval;
+let startedMusic = false;
 
-function showLove(){
+document.addEventListener("click", function startMusic(){
+    if(!startedMusic){
+        const music = document.getElementById("birthdaySound");
+        music.src = "happybirthday2.mp3";
+        music.loop = true;
+        music.play().catch(error => {
+            console.log("Chưa phát được nhạc nền:", error);
+        });
+        startedMusic = true;
+    }
+});
+
+function showWish(){
     document.getElementById("homeScreen").style.display="none";
+    document.getElementById("wishScreen").style.display="block";
+
+    const music = document.getElementById("birthdaySound");
+
+    music.pause();
+    music.src = "happybirthday.mp3";
+    music.loop = true;
+    music.load();
+
+    music.play().catch(error => {
+        console.log("Không phát được nhạc thần đèn:", error);
+    });
+}
+
+function blowCandle(){
+    document.getElementById("wishScreen").style.display="none";
     document.getElementById("photoScreen").style.display="block";
+
+    const music = document.getElementById("birthdaySound");
+
+    music.pause();
+    music.src = "happybirthday.mp3";
+    music.loop = true;
+    music.load();
+
+    music.play().catch(error => {
+        console.log("Không phát được nhạc sinh nhật:", error);
+    });
 
     createConfetti(280);
 
@@ -381,8 +469,21 @@ function showLove(){
 }
 
 function goBack(){
+
     document.getElementById("photoScreen").style.display="none";
+    document.getElementById("wishScreen").style.display="none";
     document.getElementById("homeScreen").style.display="block";
+
+    const music = document.getElementById("birthdaySound");
+
+    music.pause();
+    music.src = "happybirthday2.mp3";
+    music.loop = true;
+    music.load();
+
+    music.play().catch(error => {
+        console.log("Không phát được nhạc:", error);
+    });
 
     clearInterval(confettiInterval);
 }
