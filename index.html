@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Kiều Chinh</title>
+
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:
+        radial-gradient(circle at top left,#b8ece0 0%,transparent 30%),
+        radial-gradient(circle at top right,#9ee5d7 0%,transparent 25%),
+        radial-gradient(circle at bottom center,#8dd7c8 0%,transparent 35%),
+        linear-gradient(135deg,#d9f5ee,#c4ebe2,#aee0d5,#97d5c8);
+    color:white;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+        linear-gradient(rgba(255,255,255,.28) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.28) 1px, transparent 1px);
+    background-size:45px 45px;
+    opacity:.25;
+}
+
+.container{
+    width:min(92%,720px);
+    min-height:460px;
+    text-align:center;
+    padding:42px 38px;
+    border-radius:36px;
+    background:rgba(255,255,255,.35);
+    backdrop-filter:blur(20px);
+    border:1px solid rgba(255,255,255,.6);
+    box-shadow:
+        0 25px 60px rgba(0,80,70,.18),
+        inset 0 0 25px rgba(255,255,255,.15);
+    z-index:3;
+    position:relative;
+    animation:cardIn 1s ease;
+}
+
+.container::before{
+    content:"🍃";
+    position:absolute;
+    top:-26px;
+    left:35px;
+    font-size:2.5rem;
+    animation:spin 5s linear infinite;
+}
+
+.container::after{
+    content:"✨";
+    position:absolute;
+    right:35px;
+    bottom:-24px;
+    font-size:2.6rem;
+    animation:bounce 1.5s infinite;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:999px;
+    background:rgba(255,255,255,.7);
+    color:#008f73;
+    font-weight:800;
+    margin-bottom:15px;
+    box-shadow:0 8px 20px rgba(0,80,70,.12);
+}
+
+.cake{
+    font-size:4.2rem;
+    animation:bounce 1.5s infinite;
+}
+
+h1{
+    margin-top:12px;
+    font-size:clamp(2.2rem,6vw,4.5rem);
+    line-height:1.18;
+    color:#163b35;
+}
+
+.name{
+    background:linear-gradient(90deg,#008f73,#009688,#4fa3ff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    font-weight:900;
+}
+
+p{
+    margin:24px auto;
+    line-height:1.8;
+    color:#163b35;
+    font-size:1.22rem;
+    max-width:560px;
+    background:rgba(255,255,255,.38);
+    padding:16px 20px;
+    border-radius:20px;
+}
+
+button{
+    border:none;
+    padding:15px 32px;
+    border-radius:999px;
+    background:#163b35;
+    color:white;
+    font-size:1rem;
+    font-weight:900;
+    cursor:pointer;
+    transition:.3s;
+    box-shadow:0 12px 25px rgba(22,59,53,.35);
+}
+
+button:hover{
+    background:#0d2b27;
+    transform:translateY(-4px) scale(1.06);
+    box-shadow:0 18px 36px rgba(22,59,53,.45);
+}
+
+.birthday-img{
+    width:300px;
+    height:390px;
+    object-fit:cover;
+    border-radius:28px;
+    border:6px solid rgba(255,255,255,.85);
+    box-shadow:
+        0 18px 45px rgba(0,80,70,.25),
+        0 0 35px rgba(255,255,255,.4);
+    animation:showImg .9s ease;
+}
+
+.wish-text{
+    margin:22px auto;
+    color:white;
+    font-size:1.45rem;
+    font-weight:900;
+    text-shadow:0 3px 14px rgba(0,0,0,.25);
+    background:linear-gradient(135deg,rgba(0,143,115,.85),rgba(0,168,132,.55));
+    border:1px solid rgba(255,255,255,.45);
+    border-radius:22px;
+    padding:15px 18px;
+    max-width:540px;
+    animation:fadeText 1.2s ease;
+}
+
+/* BÓNG BAY ĐẸP HƠN */
+.balloon{
+    position:absolute;
+    bottom:-130px;
+    width:65px;
+    height:85px;
+    border-radius:52% 52% 48% 48%;
+    opacity:.96;
+    animation:floatUp linear infinite;
+    z-index:1;
+    box-shadow:
+        inset -12px -16px 22px rgba(0,0,0,.13),
+        inset 10px 10px 18px rgba(255,255,255,.42),
+        0 12px 28px rgba(0,80,70,.18);
+}
+
+/* ánh sáng trên bóng */
+.balloon::before{
+    content:'';
+    position:absolute;
+    width:18px;
+    height:28px;
+    border-radius:50%;
+    background:rgba(255,255,255,.55);
+    top:14px;
+    left:15px;
+    transform:rotate(25deg);
+}
+
+/* dây bóng bay */
+.balloon::after{
+    content:'';
+    position:absolute;
+    width:2px;
+    height:95px;
+    background:rgba(255,255,255,.88);
+    left:50%;
+    top:82px;
+    transform:translateX(-50%);
+}
+
+.b1{
+    left:8%;
+    background:linear-gradient(135deg,#00b894,#8effdf);
+    animation-duration:9s;
+}
+
+.b2{
+    left:24%;
+    background:linear-gradient(135deg,#34d6bd,#c8fff2);
+    animation-duration:11s;
+    animation-delay:1s;
+}
+
+.b3{
+    left:76%;
+    background:linear-gradient(135deg,#4fa3ff,#d6ecff);
+    animation-duration:10s;
+    animation-delay:2s;
+}
+
+.b4{
+    left:91%;
+    background:linear-gradient(135deg,#70e3cf,#e2fff8);
+    animation-duration:12s;
+    animation-delay:.5s;
+}
+
+.confetti{
+    position:fixed;
+    top:-20px;
+    z-index:999;
+    pointer-events:none;
+    animation:confettiFall linear forwards;
+}
+
+@keyframes confettiFall{
+    0%{
+        transform:translateY(0) translateX(0) rotate(0deg);
+        opacity:1;
+    }
+    100%{
+        transform:translateY(110vh) translateX(120px) rotate(720deg);
+        opacity:0;
+    }
+}
+
+@keyframes cardIn{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.92);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+@keyframes bounce{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+}
+
+@keyframes spin{
+    from{ transform:rotate(0deg); }
+    to{ transform:rotate(360deg); }
+}
+
+@keyframes floatUp{
+    0%{
+        transform:translateY(0) rotate(-4deg);
+    }
+    50%{
+        transform:translateY(-60vh) rotate(5deg);
+    }
+    100%{
+        transform:translateY(-120vh) rotate(-6deg);
+    }
+}
+
+@keyframes showImg{
+    from{
+        opacity:0;
+        transform:scale(.72) rotate(-3deg);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) rotate(0);
+    }
+}
+
+@keyframes fadeText{
+    from{
+        opacity:0;
+        transform:translateY(22px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:600px){
+    .container{
+        padding:32px 22px;
+        min-height:auto;
+    }
+
+    .birthday-img{
+        width:250px;
+        height:340px;
+    }
+
+    p{
+        font-size:1rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="balloon b1"></div>
+<div class="balloon b2"></div>
+<div class="balloon b3"></div>
+<div class="balloon b4"></div>
+
+<div class="container">
+
+    <div id="homeScreen">
+
+        <div class="badge">🎉 Happy Birthday  🎉</div>
+
+        <div class="cake">🎂</div>
+
+        <h1>
+            Chúc Mừng Sinh Nhật
+            <span class="name">Kiều Chinh</span>
+        </h1>
+
+        <p>
+            Hội ae tổ kiến chúc Kiều Chinh tuổi mới vui vẻ,
+            trong túi có tiền, trong tay có việc,
+            trong người có sức khỏe, chung quy là có tất cả nhưng vẫn ưu tiên sức khỏe trước 🥳
+        </p>
+
+        <button onclick="showLove()">Thổi nến🎁</button>
+
+    </div>
+
+    <div id="photoScreen" style="display:none">
+
+        <img src="kieuchinh.jpg" alt="Kiều Chinh" class="birthday-img">
+
+        <p class="wish-text">
+             Chúc mọi điều ước của bà sẽ thành sự thật 🎊🎊🎉🎉
+        </p>
+
+        <button onclick="goBack()">⬅ Quay lại</button>
+
+    </div>
+
+</div>
+
+<script>
+let confettiInterval;
+
+function showLove(){
+    document.getElementById("homeScreen").style.display="none";
+    document.getElementById("photoScreen").style.display="block";
+
+    createConfetti(280);
+
+    clearInterval(confettiInterval);
+    confettiInterval = setInterval(()=>{
+        createConfetti(45);
+    },900);
+}
+
+function goBack(){
+    document.getElementById("photoScreen").style.display="none";
+    document.getElementById("homeScreen").style.display="block";
+
+    clearInterval(confettiInterval);
+}
+
+function createConfetti(amount){
+    const colors=[
+        "#00a884",
+        "#3bc9b3",
+        "#4fa3ff",
+        "#7fdcc8",
+        "#c8f5ec",
+        "#ffffff"
+    ];
+
+    for(let i=0;i<amount;i++){
+        const confetti=document.createElement("div");
+        confetti.className="confetti";
+
+        confetti.style.left=Math.random()*100+"vw";
+        confetti.style.background=colors[Math.floor(Math.random()*colors.length)];
+
+        confetti.style.width=5+Math.random()*9+"px";
+        confetti.style.height=6+Math.random()*16+"px";
+
+        confetti.style.animationDuration=3+Math.random()*4+"s";
+        confetti.style.animationDelay=Math.random()*1.2+"s";
+
+        if(Math.random()>.55){
+            confetti.style.borderRadius="50%";
+        }
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>{
+            confetti.remove();
+        },7600);
+    }
+}
+</script>
+
+</body>
+</html>
